@@ -41,7 +41,7 @@ namespace Tower.Builder
         private Vector3 GetNewBuildPoint(Transform buildPoint)
         {
             Vector3 newBuildPoint = new Vector3(_buildPoint.position.x, 
-                _buildPoint.position.y + buildPoint.transform.localScale.y,
+                _buildPoint.position.y + _towerBlock.transform.localScale.y,
                 _buildPoint.position.z);
             
             return newBuildPoint;

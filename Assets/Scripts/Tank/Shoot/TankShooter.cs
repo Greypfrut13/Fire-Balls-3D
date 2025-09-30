@@ -6,11 +6,20 @@ namespace Tank.Shoot
     public class TankShooter : MonoBehaviour
     {
         [SerializeField] [Min(0.0f)] private float _delayBetwenShoots;
+        [SerializeField] [Min(0)] private int _initialBulletPoolSize;
+        
+        [SerializeField] private Transform _bulletPoolParent;
         
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
 
+        private BulletPool _bulletPool;
         private float _timeAfterShot;
+
+        private void Start()
+        {
+            _bulletPool = new BulletPool(_bulletPrefab, _bulletPoolParent, _initialBulletPoolSize);
+        }
 
         private void Update()
         {
@@ -28,7 +37,7 @@ namespace Tank.Shoot
 
         private void Shoot()
         {
-            Bullet createdBullet = Instantiate(_bulletPrefab, _shootPoint.position, Quaternion.identity);
+            Bullet bullet = _bulletPool.GetBullet();
             _timeAfterShot = 0;
         }
 

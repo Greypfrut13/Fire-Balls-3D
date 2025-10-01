@@ -694,8 +694,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c8eb3a146d7429e81339159a9a77d80, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _delayBetwenShoots: 1
-  _initialBulletPoolSize: 15
+  _delayBetwenShoots: 0.2
+  _initialBulletPoolSize: 35
   _bulletPoolParent: {fileID: 1041864644}
   _bulletPrefab: {fileID: 4202799873107249763, guid: e4af9d5a621ed99409474d24253cd20e, type: 3}
   _shootPoint: {fileID: 1327589957}

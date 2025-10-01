@@ -1,50 +1,49 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using Tower.TowerBlocks;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Tower.Builder
 {
-    public class TowerBuilder : MonoBehaviour
+    public class TowerBuilder
     {
-        [SerializeField] [Min(0)] private int _towerHeight;
+        private int _towerHeight;
+        private TowerBlock _towerBlockPrefab;
+        private Vector3 _startPosition;
+        private Transform _blocksParent;
 
-        [SerializeField] private TowerBlock _towerBlock;
-        [SerializeField] private Transform _buildPoint;
-        [SerializeField] private Transform _towerBLocksRoot;
+        public List<TowerBlock> BuiltBlocks { get;  } = new List<TowerBlock>();
         
-        private List<TowerBlock> _builtBlocks = new List<TowerBlock>();
-
-        private void Start()
+        public TowerBuilder(int towerHeight, TowerBlock towerBlockPrefab, Vector3 startPosition, Transform blocksParent)
         {
-            BuildTower();
+            _towerHeight = towerHeight;
+            _towerBlockPrefab = towerBlockPrefab;
+            _startPosition = startPosition;
+            _blocksParent = blocksParent;
         }
-
-        private void BuildTower()
+        
+        public void BuildTower()
         {
+            Vector3 currentPosition = _startPosition;
+            
             for (int i = 0; i < _towerHeight; i++)
             {
-                TowerBlock newBlock = BuildBlock(_buildPoint);
-                _builtBlocks.Add(newBlock);
-                _buildPoint = newBlock.transform;
+                TowerBlock newBlock = BuildBlock(currentPosition);
+                BuiltBlocks.Add(newBlock);
+                currentPosition = GetNextBuildPoint(currentPosition);
             }
         }
         
-        private TowerBlock BuildBlock(Transform buildPoint)
+        private TowerBlock BuildBlock(Vector3 position)
         {
-            TowerBlock builtBlock = Instantiate(_towerBlock, GetNewBuildPoint(buildPoint), Quaternion.identity, _towerBLocksRoot);
+            TowerBlock builtBlock = UnityEngine.Object.Instantiate(_towerBlockPrefab, position, Quaternion.identity, _blocksParent);
             
             return builtBlock;
         }
 
-        private Vector3 GetNewBuildPoint(Transform buildPoint)
+        private Vector3 GetNextBuildPoint(Vector3 currentPosition)
         {
-            Vector3 newBuildPoint = new Vector3(_buildPoint.position.x, 
-                _buildPoint.position.y + _towerBlock.transform.localScale.y,
-                _buildPoint.position.z);
-            
-            return newBuildPoint;
+            float blockHeight = _towerBlockPrefab.transform.localScale.y;
+            return currentPosition + Vector3.up * blockHeight;
         }
     }
 }

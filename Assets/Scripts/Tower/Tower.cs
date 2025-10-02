@@ -21,8 +21,7 @@ namespace Tower
         {
             _towerBuilder = new TowerBuilder(_data.TowerHeight, _data.TowerBlockPrefab, _buildStartPosition.position, _towerBlocksRoot);
             _towerBuilder.BuildTower();
-            //_towerBuilder = GetComponent<TowerBuilder>();
-            //_towerBuilder.BuildTower(); //  Нужно получать построенные блоки в поле _towerBlocks
+            _towerBlocks = _towerBuilder.BuiltBlocks;
 
             foreach (TowerBlock block in _towerBlocks)
             {
@@ -32,7 +31,6 @@ namespace Tower
         
         private void OnTowerBlockHit(TowerBlock hitedBlock)
         {
-            Debug.Log("TOWER HIT");
             hitedBlock.OnHit -= OnTowerBlockHit;
 
             _towerBlocks.Remove(hitedBlock);

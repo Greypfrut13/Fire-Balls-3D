@@ -1,4 +1,5 @@
 ﻿using System;
+using Tower.Obstacles;
 using Tower.TowerBlocks;
 using UnityEngine;
 using UnityEngine.Events;
@@ -22,7 +23,7 @@ namespace Tank.Shoot
         {
             MoveBullet();
         }
-
+        
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent(out TowerBlock block))

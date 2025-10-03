@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 1172727461820914890}
   - component: {fileID: 4581760918190151397}
   - component: {fileID: 356481831149547022}
+  - component: {fileID: -2726475862933000916}
   m_Layer: 0
   m_Name: 4BlocsObstacle
   m_TagString: Untagged
@@ -831,3 +832,15 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: 0}
+--- !u!114 &-2726475862933000916
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1626861337756455357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1be306b8f1dd4cffbbc5a56dd6b15799, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

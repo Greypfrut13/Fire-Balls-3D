@@ -149,6 +149,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96b671b5dbeb42c48eb8325565d5482f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _speed: 25
+  _speed: 12
   _bounceForce: 100
   _bounceRadius: 100

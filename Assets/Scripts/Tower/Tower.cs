@@ -3,11 +3,14 @@ using System.Collections.Generic;
 using Tower.Builder;
 using Tower.TowerBlocks;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace Tower
 {
     public class Tower : MonoBehaviour
     {
+        public event UnityAction<int> OnTowerSizeChanged;
+        
         [SerializeField] private TowerDataSo _data;
         
         [SerializeField] private Transform _buildStartPosition;
@@ -27,6 +30,8 @@ namespace Tower
             {
                 block.OnHit += OnTowerBlockHit;
             }
+            
+            OnTowerSizeChanged?.Invoke(_towerBlocks.Count);
         }
         
         private void OnTowerBlockHit(TowerBlock hitedBlock)
@@ -43,6 +48,8 @@ namespace Tower
                     
                 block.transform.position = newPosition;
             }
+            
+            OnTowerSizeChanged?.Invoke(_towerBlocks.Count);
         }
     }
 }

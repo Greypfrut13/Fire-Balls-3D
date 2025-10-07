@@ -34,10 +34,13 @@ namespace Tank.Shoot
                 block.Break();
                 OnBulletDisabled?.Invoke(this);
             }
-
-            if (other.TryGetComponent(out Obstacle obstacle))
+            else if (other.TryGetComponent(out Obstacle obstacle))
             {
                 Bounce();
+            }
+            else
+            {
+                OnBulletDisabled?.Invoke(this);
             }
         }
 

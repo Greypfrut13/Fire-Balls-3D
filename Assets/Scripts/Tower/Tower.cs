@@ -9,7 +9,7 @@ namespace Tower
 {
     public class Tower : MonoBehaviour
     {
-        public event UnityAction<int> OnTowerSizeChanged;
+        public event UnityAction OnBlockHit;
         
         [SerializeField] private TowerDataSo _data;
         
@@ -19,19 +19,29 @@ namespace Tower
         private TowerBuilder _towerBuilder;
 
         private List<TowerBlock> _towerBlocks = new List<TowerBlock>(); 
+        
+        public int TowerSize => _towerBlocks.Count;
 
         private void Start()
         {
-            _towerBuilder = new TowerBuilder(_data.TowerHeight, _data.TowerBlockPrefab, _buildStartPosition.position, _towerBlocksRoot);
-            _towerBuilder.BuildTower();
-            _towerBlocks = _towerBuilder.BuiltBlocks;
+            InitializeTower();
+        }
+
+        private void InitializeTower()
+        {
+            BuildTower();
 
             foreach (TowerBlock block in _towerBlocks)
             {
                 block.OnHit += OnTowerBlockHit;
             }
-            
-            OnTowerSizeChanged?.Invoke(_towerBlocks.Count);
+        }
+
+        private void BuildTower()
+        {
+            _towerBuilder = new TowerBuilder(_data.TowerHeight, _data.TowerBlockPrefab, _buildStartPosition.position, _towerBlocksRoot);
+            _towerBuilder.BuildTower();
+            _towerBlocks = _towerBuilder.BuiltBlocks;
         }
         
         private void OnTowerBlockHit(TowerBlock hitedBlock)
@@ -49,7 +59,7 @@ namespace Tower
                 block.transform.position = newPosition;
             }
             
-            OnTowerSizeChanged?.Invoke(_towerBlocks.Count);
+            OnBlockHit?.Invoke();
         }
     }
 }

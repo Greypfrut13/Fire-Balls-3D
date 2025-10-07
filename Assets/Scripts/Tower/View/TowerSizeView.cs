@@ -11,17 +11,19 @@ namespace Tower.View
 
         private void OnEnable()
         {
-            _tower.OnTowerSizeChanged += TowerSizeChangeHandle;
+            _tower.OnBlockHit += ChangeTowerSizeText;
+
+            ChangeTowerSizeText();
         }
 
         private void OnDisable()
         {
-            _tower.OnTowerSizeChanged -= TowerSizeChangeHandle;
+            _tower.OnBlockHit -= ChangeTowerSizeText;
         }
 
-        private void TowerSizeChangeHandle(int towerSize)
+        private void ChangeTowerSizeText()
         {
-            _towerSizeText.text = towerSize.ToString();
+            _towerSizeText.text = _tower.TowerSize.ToString();
         }
     }
 }

@@ -677,6 +677,7 @@ GameObject:
   m_Component:
   - component: {fileID: 402383448}
   - component: {fileID: 402383449}
+  - component: {fileID: 402383450}
   m_Layer: 0
   m_Name: Tank
   m_TagString: Untagged
@@ -717,6 +718,20 @@ MonoBehaviour:
   _bulletPoolParent: {fileID: 1041864644}
   _bulletPrefab: {fileID: 4202799873107249763, guid: e4af9d5a621ed99409474d24253cd20e, type: 3}
   _shootPoint: {fileID: 1327589957}
+  _tankEffectsHandler: {fileID: 402383450}
+--- !u!114 &402383450
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 402383447}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: eb01a468a8ab4863ad86ea75c46f828f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _recoilDistance: 0.05
 --- !u!1 &410087039
 GameObject:
   m_ObjectHideFlags: 0

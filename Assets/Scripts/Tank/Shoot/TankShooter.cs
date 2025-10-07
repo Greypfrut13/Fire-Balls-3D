@@ -1,4 +1,5 @@
 ﻿using System;
+using Tank.Effects;
 using UnityEngine;
 
 namespace Tank.Shoot
@@ -12,7 +13,8 @@ namespace Tank.Shoot
         
         [SerializeField] private Bullet _bulletPrefab;
         [SerializeField] private Transform _shootPoint;
-
+        [SerializeField] private TankEffectsHandler _tankEffectsHandler;
+        
         private BulletPool _bulletPool;
         private float _timeAfterShot;
 
@@ -38,6 +40,7 @@ namespace Tank.Shoot
         private void Shoot()
         {
             Bullet bullet = _bulletPool.GetBullet();
+            _tankEffectsHandler.PlayShootAnimation(_delayBetwenShoots / 2f);
             _timeAfterShot = 0;
         }
 
